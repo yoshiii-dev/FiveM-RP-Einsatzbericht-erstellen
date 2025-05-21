@@ -3,7 +3,8 @@
 ## 👉 So funktioniert’s:
 
 1. **Klicke auf den Link zur GitHub Page**  
-   (z. B. `https://yoshiii-dev.github.io/FiveM-RP-Einsatzbericht-erstellen/`)
+   https://yoshiii-dev.github.io/FiveM-RP-Einsatzbericht-erstellen/
+
 
 2. **Fülle alle Felder aus**  
    - Ort, Datum, Einsatzleitung, Einheiten usw.  
