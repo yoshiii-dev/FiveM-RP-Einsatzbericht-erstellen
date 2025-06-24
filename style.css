@@ -87,8 +87,6 @@ button:hover {
 .pdf-content h3 {
   margin: 0.75em 0 0.5em;
   font-size: 1.1em;
-  page-break-inside: avoid;
-  break-inside: avoid;
   page-break-after: avoid;
 }
 .pdf-content h3 + * {
@@ -109,8 +107,6 @@ button:hover {
   display: block;
   max-width: 100%;
   margin: 0.5em 0;
-  page-break-inside: avoid;
-  break-inside: avoid;
 }
 
 .signature {
@@ -121,4 +117,14 @@ button:hover {
 .red-number {
   color: red;
   font-weight: bold;
+}
+
+.pdf-content h2,
+.pdf-content h3,
+.pdf-content .signature,
+.pdf-content p,
+.pdf-content div,
+.pdf-content img {
+  page-break-inside: avoid;
+  break-inside: avoid;
 }
