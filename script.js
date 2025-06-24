@@ -124,17 +124,23 @@ function downloadPDF() {
 <div>${gegenstaendeHTML}</div>
 <hr/>
 
-<h3>⚠️ Zwischenfälle</h3>
-<p>${zwischenfaelle||'Keine Zwischenfälle'}</p>
+<div style="page-break-inside: avoid;">
+  <h3>⚠️ Zwischenfälle</h3>
+  <p>${zwischenfaelle || 'Keine Zwischenfälle'}</p>
+</div>
 <hr/>
 
-<h3>📜 Urteil</h3>
-<p>${urteilText||''}</p>
+<div style="page-break-inside: avoid;">
+  <h3>📜 Urteil</h3>
+  <p>${urteilText || ''}</p>
+</div>
 <hr/>
 
-<strong>Unterschrift Einsatzleitung SWAT:</strong><br/>
-<div class="signature">${leitung}</div>
-<p>S.W.A.T. – Los Santos Police Department</p>`;
+<div style="page-break-inside: avoid;">
+  <strong>Unterschrift Einsatzleitung SWAT:</strong><br/>
+  <div class="signature">${leitung}</div>
+  <p>S.W.A.T. – Los Santos Police Department</p>
+</div>`;
 
   const container = document.createElement('div');
   container.className = 'pdf-content';
