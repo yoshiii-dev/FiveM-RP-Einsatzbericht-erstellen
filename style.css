@@ -102,6 +102,10 @@ img {
 .typewriter-block {
   font-family: 'Courier New', Courier, monospace;
   font-size: 12pt;
+  white-space: normal !important;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  line-break: anywhere;
 }
 .no-break {
   page-break-inside: avoid !important;
