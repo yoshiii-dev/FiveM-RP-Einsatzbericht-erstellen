@@ -1,10 +1,25 @@
+function populateDropdown(id, options) {
+  const select = document.getElementById(id);
+  options.forEach(name => {
+    const option = document.createElement('option');
+    option.value = name;
+    option.textContent = name;
+    select.appendChild(option);
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  populateDropdown('leitung', einsatzleiterNamen);
+  populateDropdown('leitung2', einsatzleiterNamen);
+});
+
 const berichtnameInput = document.getElementById('berichtname');
 berichtnameInput.addEventListener('input', () => {
   berichtnameInput.value = berichtnameInput.value.replace(/[^a-zA-Z0-9 _-]/g, '');
 });
 
 const fields = [
-  'ort', 'datum', 'leitung', 'leitung2', 'einheiten', 'beschreibung',
+  'ort', 'datum', 'leitung', 'leitung2', 'beschreibung',
   'personen', 'gegenstaende', 'zwischenfaelle', 'hafteinheiten', 'geldstrafe', 'berichtname'
 ];
 
@@ -57,7 +72,11 @@ function downloadPDF() {
   data.personen = document.getElementById('personen').innerHTML.trim();
   data.gegenstaende = document.getElementById('gegenstaende').innerHTML.trim();
 
-  if (!data.ort || !data.datum || !data.leitung || !data.einheiten || !data.beschreibung ||
+  const einheitenCheckboxes = document.querySelectorAll('.einheiten-checkbox:checked');
+  const selectedUnits = Array.from(einheitenCheckboxes).map(cb => cb.value);
+  data.einheiten = ['Army', ...selectedUnits].join(', ');
+
+  if (!data.ort || !data.datum || !data.leitung || !data.beschreibung ||
       !data.personen || !data.gegenstaende || !data.hafteinheiten || !data.geldstrafe || !data.berichtname) {
     alert('Bitte alle Pflichtfelder ausfüllen.');
     return;
@@ -69,7 +88,12 @@ function downloadPDF() {
   const urteilParts = [];
   if (data.hafteinheiten) urteilParts.push(`<span class="red-number">${data.hafteinheiten}</span> Hafteinheiten`);
   if (data.geldstrafe)    urteilParts.push(`<span class="red-number">${data.geldstrafe}</span> Geldstrafe`);
-  const urteilHTML = urteilParts.length ? `Jeder der festgenommenen Tatverdächtigen erhielt:<br/><strong>${urteilParts.join(' + ')}</strong>` : '';
+  const urteilHTML = urteilParts.length
+  ? `<div class="typewriter-block">
+       <p>Jeder der festgenommenen Tatverdächtigen erhielt:</p>
+       <p><strong>${urteilParts.join(' + ')}</strong></p>
+     </div>`
+  : '';
 
   const html = `
   <div class="pdf-header with-logos">
@@ -82,23 +106,40 @@ function downloadPDF() {
     </div>
   </div>
   <hr/>
-  <h2>📄 Einsatzbericht – Razzia</h2>
-  <strong>Ort:</strong> ${data.ort}<br/>
-  <strong>Datum/Zeit:</strong> ${formattedDatum}<br/>
-  <strong>1. Einsatzleitung:</strong> ${data.leitung}<br/>
-  ${data.leitung2 ? `<strong>2. Einsatzleitung:</strong> ${data.leitung2}<br/>` : ''}
-  <strong>Beteiligte Einheiten:</strong> ${data.einheiten}
+  <h2><strong>Einsatzbericht – Razzia</strong></h2>
+  <div class="typewriter-block">
+    <p><strong>Ort:</strong> ${data.ort}</p>
+    <p><strong>Datum/Zeit:</strong> ${formattedDatum}</p>
+    <p><strong>1. Einsatzleitung:</strong> ${data.leitung}</p>
+    ${data.leitung2 ? `<p><strong>2. Einsatzleitung:</strong> ${data.leitung2}</p>` : ''}
+    <p><strong>Beteiligte Einheiten:</strong> ${data.einheiten}</p>
+  </div>
   <hr/>
-  <div class="no-break"><h3>📌 Einsatzbeschreibung</h3><p>${data.beschreibung}</p></div><hr/>
-  <div class="no-break"><h3>👤 Festgenommene Personen</h3><div>${data.personen}</div></div><hr/>
-  <div class="no-break"><h3>📦 Sichergestellte Gegenstände</h3><div>${data.gegenstaende}</div></div><hr/>
-  <div class="no-break"><h3>⚠️ Zwischenfälle</h3><p>${data.zwischenfaelle || 'Keine Zwischenfälle'}</p></div><hr/>
-  <div class="no-break"><h3>📜 Urteil</h3><p>${urteilHTML}</p></div><hr/>
-  <div class="no-break typewriter-block">
+  <div class="no-break">
+    <h3>Einsatzbeschreibung</h3>
+    <div class="typewriter-block"><p>${data.beschreibung}</p></div>
+  </div><hr/>
+
+  <div class="no-break">
+    <h3>Festgenommene Personen</h3>
+    <div class="typewriter-block">${data.personen}</div>
+  </div><hr/>
+
+  <div class="no-break">
+    <h3>Sichergestellte Gegenstände</h3>
+    <div class="typewriter-block">${data.gegenstaende}</div>
+  </div><hr/>
+
+  <div class="no-break">
+    <h3>Zwischenfälle</h3>
+    <div class="typewriter-block"><p>${data.zwischenfaelle || 'Keine Zwischenfälle gemeldet.'}</p></div>
+  </div><hr/>
+  <div class="no-break"><h3><strong>Urteil</strong></h3><p>${urteilHTML}</p></div><hr/>
+  <div class="no-break typewriter-block signature-block">
     <p><strong>Unterschrift:</strong> <span class="redacted">████████████████████</span></p>
-    <p><strong>Admiral of Navy Seals</strong></p>
-    <p><strong>Operator:</strong> ${data.leitung}</p>
-    <p><strong>Tel:</strong> <span class="redacted">████████████</span></p>
+    <p><strong>Admiral, Department of Navy Seals</strong></p>
+    <p><strong>Operator ID:</strong> ${data.leitung}</p>
+    <p><strong>Telefon:</strong> <span class="redacted">████████████</span></p>
   </div>`;
 
   const wrapper = document.createElement('div');
