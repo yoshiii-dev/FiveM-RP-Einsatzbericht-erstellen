@@ -100,7 +100,7 @@ function downloadPDF() {
     <img src="img/Navy.png" class="logo left-logo" />
     <img src="img/Wolfpack.png" class="logo right-logo" />
     <strong>DEPARTMENT OF THE NAVY</strong><br/>
-    <div class="typewriter-block">
+    <div class="typewriter-header">
       OFFICE OF THE NAVY SEALS Admiral<br/>
       5006 Fort Zancudo Corleone City<br/>90002, California
     </div>
@@ -119,7 +119,6 @@ function downloadPDF() {
     <h3><strong>Einsatzbeschreibung</strong></h3>
     <div class="typewriter-block"><p>${data.beschreibung}</p></div>
   </div><hr/>
-
   <div class="no-break">
     <h3><strong>Festgenommene Personen</strong></h3>
     <div class="typewriter-block">${data.personen}</div>
