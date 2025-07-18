@@ -99,13 +99,19 @@ img {
   font-weight: bold;
 }
 
+.typewriter-header {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 12pt;
+}
+
 .typewriter-block {
   font-family: 'Courier New', Courier, monospace;
   font-size: 12pt;
   white-space: normal !important;
-  overflow-wrap: break-word;
-  word-break: break-word;
-  line-break: anywhere;
+  overflow-wrap: normal;
+  word-break: normal;
+  text-align: justify;
+  line-height: 1.6;
 }
 .no-break {
   page-break-inside: avoid !important;
