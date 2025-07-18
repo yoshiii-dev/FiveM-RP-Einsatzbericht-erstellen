@@ -116,22 +116,22 @@ function downloadPDF() {
   </div>
   <hr/>
   <div class="no-break">
-    <h3>Einsatzbeschreibung</h3>
+    <h3><strong>Einsatzbeschreibung</strong></h3>
     <div class="typewriter-block"><p>${data.beschreibung}</p></div>
   </div><hr/>
 
   <div class="no-break">
-    <h3>Festgenommene Personen</h3>
+    <h3><strong>Festgenommene Personen</strong></h3>
     <div class="typewriter-block">${data.personen}</div>
   </div><hr/>
 
   <div class="no-break">
-    <h3>Sichergestellte Gegenstände</h3>
+    <h3><strong>Sichergestellte Gegenstände</strong></h3>
     <div class="typewriter-block">${data.gegenstaende}</div>
   </div><hr/>
 
   <div class="no-break">
-    <h3>Zwischenfälle</h3>
+    <h3><strong>Zwischenfälle</strong></h3>
     <div class="typewriter-block"><p>${data.zwischenfaelle || 'Keine Zwischenfälle gemeldet.'}</p></div>
   </div><hr/>
   <div class="no-break"><h3><strong>Urteil</strong></h3><p>${urteilHTML}</p></div><hr/>
