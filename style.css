@@ -64,16 +64,16 @@ button:hover { background: #1b5e20; }
 }
 .pdf-header.with-logos {
   position: relative;
-  padding-top: 30px;
-  min-height: 100px;
+  padding-top: 40px;
+  min-height: 110px;
 }
 .logo {
   position: absolute;
   width: 140px;
-  top: -30px;
+  top: -10px;
 }
 .left-logo { left: 10px; }
-.right-logo { right: 10px; top: -35px; }
+.right-logo { right: 10px; top: -25px; }
 
 hr {
   border: none;
@@ -94,11 +94,14 @@ img {
   display: block;
   max-width: 100%;
 }
-.red-number { color: red; font-weight: bold; }
+.red-number {
+  color: #a00;
+  font-weight: bold;
+}
 
 .typewriter-block {
   font-family: 'Courier New', Courier, monospace;
-  font-size: 14px;
+  font-size: 12pt;
 }
 .no-break {
   page-break-inside: avoid !important;
@@ -120,4 +123,51 @@ img {
 
 label span.required {
   color: red;
+}
+
+.einheiten-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 5px;
+}
+
+.einheiten-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+}
+
+.einheiten-option input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #2e7d32;
+  cursor: pointer;
+}
+
+select.nice-select {
+  background: #1e1e1e;
+  color: #fff;
+  border: 1px solid #555;
+  border-radius: 4px;
+  padding: 10px;
+  font-size: 16px;
+  width: 100%;
+  cursor: pointer;
+  appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="white" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 16px 16px;
+}
+
+select.nice-select:focus {
+  outline: none;
+  border-color: #2e7d32;
+}
+
+.signature-block {
+  font-size: 10pt;
+  margin-top: 20px;
 }
