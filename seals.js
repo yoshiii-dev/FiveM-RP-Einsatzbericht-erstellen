@@ -7,9 +7,11 @@ const einsatzleiterNamen = [
     "HAVOC",
     "IVY",
     "REAPER",
+    "SCORPION",
     "SHADOW",
     "SNOW",
     "TANGO",
+    "VIKTOR",
     "WINTERS",
     "WOLFFE"
 ];
